@@ -11,6 +11,10 @@ class Hand
       other.cards == cards
   end
 
+  def rank
+    :high_card
+  end
+
   protected
 
   attr_reader :cards
