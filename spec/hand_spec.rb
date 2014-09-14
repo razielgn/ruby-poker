@@ -16,7 +16,7 @@ describe Hand do
     context 'high card' do
       subject { hand '2h 3d kd 5h 4h' }
 
-      it 'returns :high_card' do
+      example do
         expect(subject.rank).to be :high_card
       end
     end
@@ -24,7 +24,7 @@ describe Hand do
     context 'one pair' do
       subject { hand '2h 3h 1h 3d 4h' }
 
-      it 'returns :one_pair' do
+      example do
         expect(subject.rank).to be :one_pair
       end
     end
@@ -32,7 +32,7 @@ describe Hand do
     context 'two pairs' do
       subject { hand '2h 3h 2c 3d 4h' }
 
-      it 'returns :two_pairs' do
+      example do
         expect(subject.rank).to be :two_pairs
       end
     end
@@ -40,7 +40,7 @@ describe Hand do
     context 'three of a kind' do
       subject { hand '3d 2h 2s 4h 2c' }
 
-      it 'returns :three_of_a_kind' do
+      example do
         expect(subject.rank).to be :three_of_a_kind
       end
     end
@@ -49,7 +49,7 @@ describe Hand do
       context 'ten-high' do
         subject { hand '10s 9d 8h 7s 6c' }
 
-        it 'returns :straight' do
+        example do
           expect(subject.rank).to be :straight
         end
       end
@@ -57,7 +57,7 @@ describe Hand do
       context 'wheel' do
         subject { hand '1c 2s 3h 4d 5s' }
 
-        it 'returns :straight' do
+        example do
           expect(subject.rank).to be :straight
         end
       end
@@ -65,7 +65,7 @@ describe Hand do
       context 'ace-high' do
         subject { hand '1s ks qd jc 10c' }
 
-        it 'returns :straight' do
+        example do
           expect(subject.rank).to be :straight
         end
       end
@@ -73,7 +73,7 @@ describe Hand do
       context 'wrap around' do
         subject { hand '3c 2d 1h kc qs' }
 
-        it 'does not return :straight' do
+        example do
           expect(subject.rank).not_to be :straight
         end
       end
@@ -81,7 +81,7 @@ describe Hand do
       context 'less than two suits' do
         subject { hand '10s 9s 8s 7s 6s' }
 
-        it 'does not return :straight' do
+        example do
           expect(subject.rank).not_to be :straight
         end
       end
@@ -91,7 +91,7 @@ describe Hand do
       subject { hand '10s 9s 8s 7s 5s' }
 
       context 'same suit, not in sequence' do
-        it 'returns :flush' do
+        example do
           expect(subject.rank).to be :flush
         end
       end
@@ -99,7 +99,7 @@ describe Hand do
       context 'same suit, in sequence' do
         subject { hand '10s 9s 8s 7s 6s' }
 
-        it 'does not return :flush' do
+        example do
           expect(subject.rank).not_to be :flush
         end
       end
@@ -108,7 +108,7 @@ describe Hand do
     context 'full house' do
       subject { hand '10s 10h 10d 4s 4d' }
 
-      it 'returns :full_house' do
+      example do
         expect(subject.rank).to be :full_house
       end
     end
@@ -116,7 +116,7 @@ describe Hand do
     context 'four of a kind' do
       subject { hand '10s 10h 10d 10c 4d' }
 
-      it 'returns :four_of_a_kind' do
+      example do
         expect(subject.rank).to be :four_of_a_kind
       end
     end
@@ -125,7 +125,7 @@ describe Hand do
       context 'ten-high' do
         subject { hand '10s 9s 8s 7s 6s' }
 
-        it 'returns :straight_flush' do
+        example do
           expect(subject.rank).to be :straight_flush
         end
       end
@@ -133,7 +133,7 @@ describe Hand do
       context 'wheel' do
         subject { hand '1c 2c 3c 4c 5c' }
 
-        it 'returns :straight_flush' do
+        example do
           expect(subject.rank).to be :straight_flush
         end
       end
@@ -141,7 +141,7 @@ describe Hand do
       context 'ace-high' do
         subject { hand '1s ks qs js 10s' }
 
-        it 'returns :straight_flush' do
+        example do
           expect(subject.rank).to be :straight_flush
         end
       end
@@ -149,7 +149,7 @@ describe Hand do
       context 'wrap around' do
         subject { hand '3c 2c 1c kc qc' }
 
-        it 'does not return :straight_flush' do
+        example do
           expect(subject.rank).not_to be :straight_flush
         end
       end
