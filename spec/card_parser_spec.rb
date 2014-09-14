@@ -2,14 +2,6 @@ require 'card_parser'
 
 describe CardParser do
   describe '#parse_card' do
-    it 'raises InvalidCardError when invalid' do
-      expect { subject.parse_card('')    } .to raise_error(InvalidCardError)
-      expect { subject.parse_card('1')   } .to raise_error(InvalidCardError)
-      expect { subject.parse_card('1g')  } .to raise_error(InvalidCardError)
-      expect { subject.parse_card('14h') } .to raise_error(InvalidCardError)
-      expect { subject.parse_card('0h')  } .to raise_error(InvalidCardError)
-    end
-
     it 'parses cards from ace to king of hearts' do
       expect(subject.parse_card('1h')).to  eq Card.new(1,  :h)
       expect(subject.parse_card('2h')).to  eq Card.new(2,  :h)

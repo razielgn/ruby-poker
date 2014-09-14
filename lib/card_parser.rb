@@ -1,8 +1,6 @@
 require 'card'
 require 'hand'
 
-InvalidCardError = Class.new(StandardError)
-
 class CardParser
   FORMAT = /(\d+|[jqk])([hcds])/
   FIGURES_MAPPING = { 'j' => 11, 'q' => 12, 'k' => 13 }
@@ -10,9 +8,6 @@ class CardParser
   def parse_card(string)
     pips, suit = match_against_regexp(string)
     pips = number_or_figure_to_number(pips)
-
-    raise InvalidCardError if invalid_card?(pips, suit)
-
     Card.new(pips, suit.to_sym)
   end
 
@@ -22,10 +17,6 @@ class CardParser
   end
 
   private
-
-  def invalid_card?(pips, suit)
-    suit.nil? || !(1..13).include?(pips)
-  end
 
   def match_against_regexp(string)
     string.match(FORMAT).to_a.drop(1)
