@@ -13,12 +13,8 @@ describe Hand do
   end
 
   describe '#rank' do
-    def make_hand(string)
-      CardParser.new.parse_hand(string)
-    end
-
     context 'high card' do
-      subject { make_hand('2h 3h 1h 5h 4h') }
+      subject { hand '2h 3h 1h 5h 4h' }
 
       it 'returns :high_card' do
         expect(subject.rank).to eq :high_card
