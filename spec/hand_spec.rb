@@ -112,5 +112,13 @@ describe Hand do
         expect(subject.rank).to be :full_house
       end
     end
+
+    context 'four of a kind' do
+      subject { hand '10s 10h 10d 10c 4d' }
+
+      it 'returns :four_of_a_kind' do
+        expect(subject.rank).to be :four_of_a_kind
+      end
+    end
   end
 end

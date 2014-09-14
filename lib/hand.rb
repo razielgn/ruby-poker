@@ -12,7 +12,9 @@ class Hand
   end
 
   def rank
-    if full_house?
+    if four_of_a_kind?
+      :four_of_a_kind
+    elsif full_house?
       :full_house
     elsif straight?
       :straight
@@ -63,6 +65,10 @@ class Hand
     three_of_a_kind? && one_pair?
   end
 
+  def four_of_a_kind?
+    fourths_count == 1
+  end
+
   def grouped_by_pips
     cards.group_by(&:pips)
   end
@@ -81,6 +87,10 @@ class Hand
 
   def triples_count
     same_pips_count(3)
+  end
+
+  def fourths_count
+    same_pips_count(4)
   end
 
   def one_suit?
