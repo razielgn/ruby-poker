@@ -12,7 +12,9 @@ class Hand
   end
 
   def rank
-    if two_pairs?
+    if three_of_a_kind?
+      :three_of_a_kind
+    elsif two_pairs?
       :two_pairs
     elsif one_pair?
       :one_pair
@@ -39,11 +41,25 @@ class Hand
     pairs_count == 2
   end
 
+  def three_of_a_kind?
+    triples_count == 1
+  end
+
   def grouped_by_pips
     cards.group_by(&:pips)
   end
 
   def pairs_count
-    grouped_by_pips.values.count { |cards| cards.count == 2 }
+    same_pips_count(2)
+  end
+
+  def triples_count
+    same_pips_count(3)
+  end
+
+  def same_pips_count(count)
+    grouped_by_pips.values.count { |cards|
+      cards.count == count
+    }
   end
 end
