@@ -14,7 +14,7 @@ describe Hand do
 
   describe '#rank' do
     context 'high card' do
-      subject { hand '2h 3h 1h 5h 4h' }
+      subject { hand '2h 3d kd 5h 4h' }
 
       it 'returns :high_card' do
         expect(subject.rank).to be :high_card
@@ -83,6 +83,24 @@ describe Hand do
 
         it 'does not return :straight' do
           expect(subject.rank).not_to be :straight
+        end
+      end
+    end
+
+    context 'flush' do
+      subject { hand '10s 9s 8s 7s 5s' }
+
+      context 'same suit, not in sequence' do
+        it 'returns :flush' do
+          expect(subject.rank).to be :flush
+        end
+      end
+
+      context 'same suit, in sequence' do
+        subject { hand '10s 9s 8s 7s 6s' }
+
+        it 'does not return :flush' do
+          expect(subject.rank).not_to be :flush
         end
       end
     end

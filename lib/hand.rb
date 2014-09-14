@@ -14,6 +14,8 @@ class Hand
   def rank
     if straight?
       :straight
+    elsif flush?
+      :flush
     elsif three_of_a_kind?
       :three_of_a_kind
     elsif two_pairs?
@@ -48,11 +50,11 @@ class Hand
   end
 
   def straight?
-    return false unless grouped_by_suits.count > 1
+    in_sequence? && !one_suit?
+  end
 
-    pips = sorted_by_pips.map(&:pips)
-    pips == [1, 10, 11, 12, 13] ||
-      pips == (pips.first..pips.last).to_a
+  def flush?
+    one_suit? && !in_sequence?
   end
 
   def grouped_by_pips
@@ -73,6 +75,16 @@ class Hand
 
   def triples_count
     same_pips_count(3)
+  end
+
+  def one_suit?
+    grouped_by_suits.count == 1
+  end
+
+  def in_sequence?
+    pips = sorted_by_pips.map(&:pips)
+    pips == [1, 10, 11, 12, 13] ||
+      pips == (pips.first..pips.last).to_a
   end
 
   def same_pips_count(count)
