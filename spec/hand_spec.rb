@@ -44,5 +44,47 @@ describe Hand do
         expect(subject.rank).to eq :three_of_a_kind
       end
     end
+
+    context 'straight' do
+      context 'ten-high' do
+        subject { hand '10s 9d 8h 7s 6c' }
+
+        it 'returns :straight' do
+          expect(subject.rank).to eq :straight
+        end
+      end
+
+      context 'wheel' do
+        subject { hand '1c 2s 3h 4d 5s' }
+
+        it 'returns :straight' do
+          expect(subject.rank).to eq :straight
+        end
+      end
+
+      context 'ace-high' do
+        subject { hand '1s ks qd jc 10c' }
+
+        it 'returns :straight' do
+          expect(subject.rank).to eq :straight
+        end
+      end
+
+      context 'wrap around' do
+        subject { hand '3c 2d 1h kc qs' }
+
+        it 'does not return :straight' do
+          expect(subject.rank).not_to eq :straight
+        end
+      end
+
+      context 'less than two suits' do
+        subject { hand '10s 9s 8s 7s 6s' }
+
+        it 'does not return :straight' do
+          expect(subject.rank).not_to eq :straight
+        end
+      end
+    end
   end
 end

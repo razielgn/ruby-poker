@@ -12,7 +12,9 @@ class Hand
   end
 
   def rank
-    if three_of_a_kind?
+    if straight?
+      :straight
+    elsif three_of_a_kind?
       :three_of_a_kind
     elsif two_pairs?
       :two_pairs
@@ -45,8 +47,24 @@ class Hand
     triples_count == 1
   end
 
+  def straight?
+    return false unless grouped_by_suits.count > 1
+
+    pips = sorted_by_pips.map(&:pips)
+    pips == [1, 10, 11, 12, 13] ||
+      pips == (pips.first..pips.last).to_a
+  end
+
   def grouped_by_pips
     cards.group_by(&:pips)
+  end
+
+  def grouped_by_suits
+    cards.group_by(&:suit)
+  end
+
+  def sorted_by_pips
+    cards.sort_by(&:pips)
   end
 
   def pairs_count
