@@ -1,7 +1,7 @@
 require 'card'
+require 'hand'
 
 InvalidCardError = Class.new(StandardError)
-InvalidHandError = Class.new(StandardError)
 
 class CardParser
   FORMAT = /(\d+|[jqk])([hcds])/
@@ -18,18 +18,13 @@ class CardParser
 
   def parse_hand(string)
     cards = string.split(' ').map(&method(:parse_card))
-    raise InvalidHandError if invalid_hand?(cards)
-    cards
+    Hand.new(cards)
   end
 
   private
 
   def invalid_card?(pips, suit)
     suit.nil? || !(1..13).include?(pips)
-  end
-
-  def invalid_hand?(cards)
-    cards.length != 5
   end
 
   def match_against_regexp(string)

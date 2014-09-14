@@ -77,16 +77,12 @@ describe CardParser do
 
   describe '#parse_hand' do
     it 'parses multiple cards separated by a space' do
-      expect(subject.parse_hand('1s ks 10d 5c kh')).to eq [
+      hand = Hand.new([
         Card.new(1, :s), Card.new(13, :s), Card.new(10, :d),
         Card.new(5, :c), Card.new(13, :h)
-      ]
-    end
+      ])
 
-    it 'raises InvalidHandError when given amount different than 5' do
-      expect { subject.parse_hand('')   }.to raise_error(InvalidHandError)
-      expect { subject.parse_hand('1s') }.to raise_error(InvalidHandError)
-      expect { subject.parse_hand('1s ks 10d 5c kh 8d') }.to raise_error(InvalidHandError)
+      expect(subject.parse_hand('1s ks 10d 5c kh')).to eq hand
     end
   end
 end
