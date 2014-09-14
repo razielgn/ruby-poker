@@ -10,4 +10,12 @@ describe Card do
       expect { described_class.new(0, :h)  } .to raise_error(InvalidCardError)
     end
   end
+
+  describe '#pips' do
+    subject { card '5h' }
+
+    it 'returns the pips' do
+      expect(subject.pips).to be 5
+    end
+  end
 end

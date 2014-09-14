@@ -4,6 +4,8 @@ class Card
   SUITS = %i(c d h s)
   PIPS  = (1..13)
 
+  attr_reader :pips
+
   def initialize(pips, suit)
     @pips = pips
     @suit = suit
@@ -19,7 +21,6 @@ class Card
 
   protected
 
-  attr_reader :pips
   attr_reader :suit
 
   private
