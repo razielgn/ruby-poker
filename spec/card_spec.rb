@@ -18,4 +18,12 @@ describe Card do
       expect(subject.pips).to be 5
     end
   end
+
+  describe '#suit' do
+    subject { card '5h' }
+
+    it 'returns the suit' do
+      expect(subject.suit).to be :h
+    end
+  end
 end

@@ -5,6 +5,7 @@ class Card
   PIPS  = (1..13)
 
   attr_reader :pips
+  attr_reader :suit
 
   def initialize(pips, suit)
     @pips = pips
@@ -18,10 +19,6 @@ class Card
       other.pips == pips &&
       other.suit == suit
   end
-
-  protected
-
-  attr_reader :suit
 
   private
 
