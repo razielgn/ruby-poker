@@ -1,3 +1,5 @@
+require 'card_parser'
+
 module CardParserHelpers
   def hand(string)
     CardParser.new.parse_hand(string)
