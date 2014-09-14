@@ -28,5 +28,13 @@ describe Hand do
         expect(subject.rank).to eq :one_pair
       end
     end
+
+    context 'two pairs' do
+      subject { hand '2h 3h 2c 3d 4h' }
+
+      it 'returns :two_pairs' do
+        expect(subject.rank).to eq :two_pairs
+      end
+    end
   end
 end
