@@ -120,5 +120,39 @@ describe Hand do
         expect(subject.rank).to be :four_of_a_kind
       end
     end
+
+    context 'straight flush' do
+      context 'ten-high' do
+        subject { hand '10s 9s 8s 7s 6s' }
+
+        it 'returns :straight_flush' do
+          expect(subject.rank).to be :straight_flush
+        end
+      end
+
+      context 'wheel' do
+        subject { hand '1c 2c 3c 4c 5c' }
+
+        it 'returns :straight_flush' do
+          expect(subject.rank).to be :straight_flush
+        end
+      end
+
+      context 'ace-high' do
+        subject { hand '1s ks qs js 10s' }
+
+        it 'returns :straight_flush' do
+          expect(subject.rank).to be :straight_flush
+        end
+      end
+
+      context 'wrap around' do
+        subject { hand '3c 2c 1c kc qc' }
+
+        it 'does not return :straight_flush' do
+          expect(subject.rank).not_to be :straight_flush
+        end
+      end
+    end
   end
 end

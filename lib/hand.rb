@@ -12,7 +12,9 @@ class Hand
   end
 
   def rank
-    if four_of_a_kind?
+    if straight_flush?
+      :straight_flush
+    elsif four_of_a_kind?
       :four_of_a_kind
     elsif full_house?
       :full_house
@@ -67,6 +69,10 @@ class Hand
 
   def four_of_a_kind?
     fourths_count == 1
+  end
+
+  def straight_flush?
+    one_suit? && in_sequence?
   end
 
   def grouped_by_pips
