@@ -12,7 +12,11 @@ class Hand
   end
 
   def rank
-    :high_card
+    if one_pair?
+      :one_pair
+    else
+      :high_card
+    end
   end
 
   protected
@@ -23,5 +27,15 @@ class Hand
 
   def invalid?
     cards.length != 5
+  end
+
+  def one_pair?
+    grouped_by_pips.values.one? { |cards|
+      cards.count == 2
+    }
+  end
+
+  def grouped_by_pips
+    cards.group_by(&:pips)
   end
 end

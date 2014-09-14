@@ -20,5 +20,13 @@ describe Hand do
         expect(subject.rank).to eq :high_card
       end
     end
+
+    context 'one pair' do
+      subject { hand '2h 3h 1h 3d 4h' }
+
+      it 'returns :one_pair' do
+        expect(subject.rank).to eq :one_pair
+      end
+    end
   end
 end
