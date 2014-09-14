@@ -12,7 +12,9 @@ class Hand
   end
 
   def rank
-    if straight?
+    if full_house?
+      :full_house
+    elsif straight?
       :straight
     elsif flush?
       :flush
@@ -55,6 +57,10 @@ class Hand
 
   def flush?
     one_suit? && !in_sequence?
+  end
+
+  def full_house?
+    three_of_a_kind? && one_pair?
   end
 
   def grouped_by_pips

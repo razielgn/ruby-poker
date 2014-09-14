@@ -104,5 +104,13 @@ describe Hand do
         end
       end
     end
+
+    context 'full house' do
+      subject { hand '10s 10h 10d 4s 4d' }
+
+      it 'returns :full_house' do
+        expect(subject.rank).to be :full_house
+      end
+    end
   end
 end
