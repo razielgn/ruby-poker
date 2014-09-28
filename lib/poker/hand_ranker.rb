@@ -1,3 +1,5 @@
+require_relative 'ranks'
+
 module Poker
   class HandRanker
     def initialize(hand)
@@ -6,23 +8,23 @@ module Poker
 
     def rank
       if straight_flush?
-        :straight_flush
+        Ranks::StraightFlush.new
       elsif four_of_a_kind?
-        :four_of_a_kind
+        Ranks::FourOfAKind.new
       elsif full_house?
-        :full_house
+        Ranks::FullHouse.new
       elsif straight?
-        :straight
+        Ranks::Straight.new
       elsif flush?
-        :flush
+        Ranks::Flush.new
       elsif three_of_a_kind?
-        :three_of_a_kind
+        Ranks::ThreeOfAKind.new
       elsif two_pairs?
-        :two_pairs
+        Ranks::TwoPairs.new
       elsif one_pair?
-        :one_pair
+        Ranks::OnePair.new
       else
-        :high_card
+        Ranks::HighCard.new
       end
     end
 
