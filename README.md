@@ -14,11 +14,11 @@ Feel free to critique anything. Actually the code is here so that you can point 
 ## Basic API
 
 ```ruby
-hand = CardParser.parse_hand '1s ks qs js 10s'
-# => Hand object with 5 cars
+hand = Poker::CardParser.new.parse_hand '1s ks qs js 10s'
+# => #<Poker::Hand A♠ 10♠ J♠ Q♠ K♠>
 
-HandRanker.new(hand).rank
-# => :straight_flush
+Poker::HandRanker.new(hand).rank
+# => #<Poker::Ranks::StraightFlush:0x007f4034f07bb8 @hand=#<Poker::Hand A♠ 10♠ J♠ Q♠ K♠>>
 ```
 
 ## TODOs
