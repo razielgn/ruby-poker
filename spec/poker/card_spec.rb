@@ -27,5 +27,14 @@ module Poker
         expect(subject.suit).to be :h
       end
     end
+
+    describe '#to_s' do
+      it 'returns a human-readable rapresentation' do
+        expect(card('10d').to_s).to eq '10♦'
+        expect(card('1c').to_s).to  eq 'A♣'
+        expect(card('5h').to_s).to  eq '5♥'
+        expect(card('qs').to_s).to  eq 'Q♠'
+      end
+    end
   end
 end

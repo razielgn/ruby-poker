@@ -14,6 +14,14 @@ module Poker
         other.cards == cards
     end
 
+    def to_s
+      cards.map(&:to_s).join ' '
+    end
+
+    def inspect
+      "#<Poker::Hand #{to_s}>"
+    end
+
     private
 
     def invalid?

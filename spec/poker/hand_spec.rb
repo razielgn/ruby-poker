@@ -2,18 +2,18 @@ require 'poker/hand'
 
 module Poker
   describe Hand do
-    describe '.new' do
-      let(:cards) {
-        [
-          card('1h'),
-          card('2h'),
-          card('3h'),
-          card('4h'),
-          card('5h'),
-          card('6h'),
-        ]
-      }
+    let(:cards) {
+      [
+        card('kh'),
+        card('2h'),
+        card('3h'),
+        card('4h'),
+        card('1h'),
+        card('5h'),
+      ]
+    }
 
+    describe '.new' do
       it 'raises InvalidHandError for no cards' do
         expect do
           described_class.new(cards.take(0))
@@ -54,6 +54,14 @@ module Poker
         expect do
           described_class.new(cards.take(5))
         end.not_to raise_error
+      end
+    end
+
+    describe '#to_s' do
+      subject { described_class.new(cards.take(5)) }
+
+      it 'returns a human-readable rapresentation' do
+        expect(subject.to_s).to eq 'A♥ 2♥ 3♥ 4♥ K♥'
       end
     end
   end
