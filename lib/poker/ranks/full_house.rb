@@ -4,8 +4,8 @@ module Poker
   module Ranks
     class FullHouse < Rank
       def matches?
-        ThreeOfAKind.new(cards).matches? &&
-          OnePair.new(cards).matches?
+        ThreeOfAKind.new(hand).matches? &&
+          OnePair.new(hand).matches?
       end
     end
   end

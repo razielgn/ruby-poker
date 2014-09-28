@@ -1,8 +1,8 @@
 module Poker
   module Ranks
     class Rank
-      def initialize(cards)
-        @cards = cards
+      def initialize(hand)
+        @hand = hand
       end
 
       def matches?
@@ -11,7 +11,9 @@ module Poker
 
       protected
 
-      attr_reader :cards
+      def cards
+        hand.cards
+      end
 
       def pairs_count
         same_pips_count(2)
@@ -31,6 +33,8 @@ module Poker
       end
 
       private
+
+      attr_reader :hand
 
       def grouped_by_pips
         cards.group_by(&:pips)

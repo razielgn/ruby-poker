@@ -3,12 +3,12 @@ require_relative 'ranks'
 module Poker
   class HandRanker
     def initialize(hand)
-      @cards = hand.cards
+      @hand = hand
     end
 
     def rank
       RANKS.lazy \
-        .map { |klass| klass.new(cards) }
+        .map { |klass| klass.new(hand) }
         .find(&:matches?)
     end
 
@@ -27,6 +27,6 @@ module Poker
       Ranks::HighCard,
     ]
 
-    attr_reader :cards
+    attr_reader :hand
   end
 end
