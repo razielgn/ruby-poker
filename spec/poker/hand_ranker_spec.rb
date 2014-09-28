@@ -2,8 +2,16 @@ require 'poker/hand_ranker'
 
 module Poker
   RSpec::Matchers.define :have_rank do |expected_rank|
+    def rank(string)
+      HandRanker.new(hand string).rank
+    end
+
     match { |string|
-      HandRanker.new(hand string).rank.class == expected_rank
+      rank(string).class == expected_rank
+    }
+
+    failure_message { |string|
+      "expected rank #{expected_rank}, got #{rank(string).class}"
     }
   end
 
