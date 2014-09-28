@@ -5,7 +5,7 @@ module Poker
     attr_reader :cards
 
     def initialize(cards)
-      @cards = cards
+      @cards = sort_cards_by_pips(cards)
       raise InvalidHandError, 'need 5 cards' if invalid?
     end
 
@@ -18,6 +18,10 @@ module Poker
 
     def invalid?
       cards.length != 5
+    end
+
+    def sort_cards_by_pips(cards)
+      cards.sort_by(&:pips)
     end
   end
 end
